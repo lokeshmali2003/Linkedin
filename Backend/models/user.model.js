@@ -1,3 +1,4 @@
+// ...existing code...
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
@@ -14,11 +15,11 @@ const userSchema = new mongoose.Schema({
         {
         college: {type: String},
         degree: {type: String},
-        fileldOfStudy: {type: String},
+        fieldOfStudy: {type: String}, // corrected
         }
      ],
      location: {type: String },
-     gender: {type  : String, enum: ["Male", "Female", "Other"] },
+     gender: {type  : String , enum: ["Male", "Female", "Other"] },
      experience: [
         {
         title: {type: String }, 
@@ -26,13 +27,13 @@ const userSchema = new mongoose.Schema({
         description: {type: String },
         }
      ],
-     connections:[ {
-        type: [mongoose.Schema.Types.ObjectId], ref: "User"
-    }],
-
+     connections: [
+       { type: mongoose.Schema.Types.ObjectId, ref: "User" } // corrected
+     ],
     
 },{timestamps: true })
 
 const  User = mongoose.model("User", userSchema);
 
-export default User; 
+export default User;
+// ...existing code...
