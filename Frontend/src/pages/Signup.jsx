@@ -1,21 +1,25 @@
 import { useState, useContext } from 'react'
 import logo from '../assets/logo.svg'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext'
 function Signup() {
   const [showPassword, setShowPassword] = useState(false)
   let {serverURL} = useContext(AuthContext);
-
+  let {userData , setUserData} = useContext(UserDataContext);
+  let navigate = Navigate();
   let [firstName, setFirstName] = useState('');
   let [lastName, setLastName] = useState('');
   let [userName, setUserName] = useState('');
   let [email, setEmail] = useState('');
   let [password, setPassword] = useState('');   
+  let [loading , setLoading] = useState(false);
+  let [err , setErr] = useState("");
     
    
   const handleSignup = async (e) => {
     e.preventDefault();
+    setLoading(true);
    try{
     let result = await axios.post(`${serverURL}/api/auth/signup`,{
       firstName,
@@ -25,9 +29,18 @@ function Signup() {
       password
     },{withCredentials:true});
     console.log(result);   
+    setUserData(result.data);
+    navigate('/');
+    setLoading(false);
+    setFirstName('');
+    setLastName('');
+    setUserName('');
+    setEmail('');
+    setPassword(''); 
 
    }catch(err){
-     console.log(err);  
+     setErr(err.response.data.message);
+     setLoading(false);
    }
   }
  
@@ -39,14 +52,38 @@ function Signup() {
       </div>
       <form className='flex flex-col items-center justify-center w-[90%] max-w-[400px] mx-auto h-[80%] gap-6 md:shadow-xl' onSubmit={handleSignup}>
         <h1 className='text-3xl font-bold mt-[-20px]'>Sign Up</h1>
-        <input type="text" placeholder='First Name' className='w-[80%] p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500' onChange={(e)=>setFirstName(e.target.value)} />
+        <input
+          type="text"
+          placeholder='First Name'
+          className='w-[80%] p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+          value={firstName}
+          onChange={(e)=>setFirstName(e.target.value)}
+        />
 
 
-        <input type="text" placeholder='Last Name' className='w-[80%] p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500' onChange={(e)=>setLastName(e.target.value)} />
+        <input
+          type="text"
+          placeholder='Last Name'
+          className='w-[80%] p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+          value={lastName}
+          onChange={(e)=>setLastName(e.target.value)}
+        />
 
-        <input type="text" placeholder='UserName' className='w-[80%] p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500' onChange={(e)=>setUserName(e.target.value)} />
+        <input
+          type="text"
+          placeholder='UserName'
+          className='w-[80%] p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+          value={userName}
+          onChange={(e)=>setUserName(e.target.value)}
+        />
 
-        <input type="email" placeholder='Email' className='w-[80%] p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500' onChange={(e)=>setEmail(e.target.value)} />
+        <input
+          type="email"
+          placeholder='Email'
+          className='w-[80%] p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+          value={email}
+          onChange={(e)=>setEmail(e.target.value)}
+        />
          
         <div className='relative w-[80%]'>
           <input
@@ -77,12 +114,13 @@ function Signup() {
           </button>
         </div>
 
-        <button type="submit" className='w-[80%] p-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-300'>Sign Up</button>     
+
+        {err && <p className='text-red-600'>{err}</p>}
+
+        <button type="submit" className='w-[80%] p-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-300' disabled={loading}>{loading ? 'Loading...' : 'Sign Up'}</button>     
 
         <p>Already have a account? <Link to="/login" className="text-blue-600 hover:underline">Log In</Link></p>
-
       </form>
-
     </div>
   )
 }
