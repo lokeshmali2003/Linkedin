@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	/* Prevent horizontal scroll on mobile by default */
+	html, body, #root {
+		@apply overflow-x-hidden;
+	}
+}
