@@ -36,13 +36,16 @@ export const signUp= async (req, res) => {
         });
         await user.save();
         let token = await genToken(user._id);
-        res.cookie("token", token, {    
+        // set cookie (best-effort for dev). For cross-origin cookies in modern browsers,
+        // SameSite=None and Secure are required — not always available on localhost.
+        res.cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production', 
-            sameSite: 'strict', 
-            maxAge: 7 * 24 * 60 * 60 * 1000 
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'none',
+            maxAge: 7 * 24 * 60 * 60 * 1000
         });
-        return res.status(201).json(user)
+        // Return token in body too so frontend can use it if cookies are blocked in dev
+        return res.status(201).json({ user, token })
 
 
     } catch (error) {   

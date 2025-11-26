@@ -9,15 +9,18 @@ dotenv.config()
 let port=process.env.PORT || 5000
 let app = express()
 app.use(express.json());
+// Allow local frontend dev ports; keep credentials enabled for cookies
 app.use(cors({
-    origin:"http://localhost:5173",  
-    credentials:true
+    origin: ["http://localhost:5173", "http://localhost:5174", "http://localhost:5175"],
+    credentials: true
 }));
 
 app.use(cookieParser());
 
 app.use("/api/auth",authRouter)
+// Keep existing v1 route prefix used by frontend
 app.use("/api/user",userRouter)
+app.use("/api/v1/user", userRouter)
 
 
 
