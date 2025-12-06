@@ -92,7 +92,7 @@ function Nav() {
             {profileOpen && (
               <div className='absolute -right-12 top-12 w-56 bg-white rounded-lg shadow-lg border border-gray-200 p-3 text-sm z-50'>
                 <div className='flex items-center gap-3 pb-3'>
-                  <div className='w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center text-white font-bold'>
+                  <div className='w-12 h-11 rounded-full bg-gray-300 flex items-center justify-center text-white font-bold'>
                     {userData?.user?.firstName?.charAt(0) || 'U'}
                   </div>
                   <div>
