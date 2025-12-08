@@ -96,7 +96,7 @@ function Nav() {
                     {userData?.user?.firstName?.charAt(0) || 'U'}
                   </div>
                   <div>
-                    <div className='font-semibold text-gray-900'>{userData?.user?.firstName} {userData?.user?.lastName || 'Your Name'}</div>
+                    <div className='text-[19px] font-semibold text-gray-700'>{userData?.user?.firstName} {userData?.user?.lastName || 'Your Name'}</div>
                     <div className='text-xs text-gray-500'>{userData?.user?.email || 'user@example.com'}</div>
                   </div>
                 </div>

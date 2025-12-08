@@ -21,9 +21,10 @@ function Home() {
          <div className="w-[20px] h-[20px]  bg-[#17c1ff] absolute top-[105px] left-[90px] rounded-full flex justify-center items-center">
             <FiPlus className='text-white' />
           </div>
-          <div className="mt-[25px] pl-[20px]">
+          <div className='mt-[30px] pl-[20px] text-[19px] font-semibold text-gray-700'>
             <div>{`${userData?.user?.firstName} ${userData?.user?.lastName}`}</div>
-            
+            <div className='text-[15px] font-semibold text-gray-700'>{`${userData?.user?.headline || ""}`}</div>
+            <div className='text-[15px] text-gray-500' >{`${userData?.user?.location}` }</div>
           </div>
       </div>
 
