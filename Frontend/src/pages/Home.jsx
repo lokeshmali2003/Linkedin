@@ -4,10 +4,13 @@ import dp from '../assets/profileBlanck.webp'
 import { FiPlus } from "react-icons/fi";
 import { IoCameraOutline } from "react-icons/io5";
 import { UserDataContext } from '../context/userContext.jsx';
+import { HiPencil } from "react-icons/hi2";
+import EditProfile from '../components/EditProfile.jsx';
 function Home() {
     const { userData, setUserData } = useContext(UserDataContext)
   return (
     <div className='w-full min-h-[100vh] bg-[#f0efe7] pt-[100px] flex items-start justify-center gap-[20px] px-[20px] flex-col lg:flex-row'>
+      <EditProfile />
       <Nav />
       <div className='w-full lg:w-[25%] rounded-lg min-h-[200px] bg-white shadow-lg p-[10px] relative' >
         <div className='w-[100%] h-[100px] bg-gray-400 rounded overflow-hidden flex items-center justify-center'>
@@ -26,6 +29,7 @@ function Home() {
             <div className='text-[15px] font-semibold text-gray-700'>{`${userData?.user?.headline || ""}`}</div>
             <div className='text-[15px] text-gray-500' >{`${userData?.user?.location}` }</div>
           </div>
+          <button className='w-[100%] h-[40px] my-[20px] rounded-full border-2 border-[#2dc0ff] text-[#2dc0ff] flex justify-center items-center gap-[10px]'>Edit Profile <HiPencil /> </button>
       </div>
 
       <div className='w-full lg:w-[50%] min-h-[200px] bg-white shadow-lg'></div>
