@@ -7,7 +7,7 @@ export const UserDataContext = createContext()
 function UserContext({ children }) {
   const [userData, setUserData] = useState(null)
   const { serverURL } = useContext(AuthContext)
-
+let [edit , setEdit] = useState(false)
   const getCurrentUser = async () => {
     try {
       const result = await axios.get(`${serverURL}/api/v1/user/currentuser`, { withCredentials: true })
@@ -23,7 +23,7 @@ function UserContext({ children }) {
     getCurrentUser()
   }, [])
 
-  const value = { userData, setUserData }
+  const value = { userData, setUserData , edit , setEdit }
 
   return (
     <UserDataContext.Provider value={value}>
