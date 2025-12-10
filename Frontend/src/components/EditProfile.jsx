@@ -7,7 +7,7 @@ import profileDp from '../assets/profileBlanck.webp'
 function EditProfile() {
   let { edit, setEdit, userData, setUserData } = useContext(UserDataContext)
   let [ firstName , setFirstName ] = useState(userData.firstName || "");
-  let [ lastName , setLasttName ] = useState(userData.lastName || "");
+  let [ lastName , setLastName ] = useState(userData.lastName || "");
   let [ userName , setUserName ] = useState(userData.userName || "");
   let [ headline , setHeadline ] = useState(userData.headline || "");
   let [ location , setLocation ] = useState(userData.location || "");
@@ -28,18 +28,58 @@ function EditProfile() {
          <div className="w-[20px] h-[20px]  bg-[#17c1ff] absolute top-[210px] left-[90px] rounded-full flex justify-center items-center">
                     <FiPlus className='text-white' />
                   </div>
-                  <form action="" className='w-full flex flex-col  items-center justify-center gap-[20px] mt-[50px]'>
-                    <input type="text" placeholder='First Name' />
-                    <input type="text" placeholder='Last Name' />
-                    <input type="text" placeholder='User Name' />
-                    <input type="text" placeholder='Headline' />
-                    <input type="text" placeholder='Location' />
-                    <input type="text" placeholder='Gender (Male/ Female / Other) ' />
-                    <div className="">
-                      <h1>Skill</h1>
-                    </div>
+                 <form className='w-full flex flex-col items-center justify-center gap-4 mt-[60px] px-4'>
 
-                  </form>
+  <input
+    type="text"
+    placeholder="First Name"
+    value={firstName}
+    onChange={(e) => setFirstName(e.target.value)}
+    className="w-full border border-gray-300 rounded-md p-2 bg-white text-black focus:outline-none focus:border-blue-500"
+  />
+
+  <input
+    type="text"
+    placeholder="Last Name"
+    value={lastName}
+    onChange={(e) => setLastName(e.target.value)}
+    className="w-full border border-gray-300 rounded-md p-2 bg-white text-black focus:outline-none focus:border-blue-500"
+  />
+
+  <input
+    type="text"
+    placeholder="User Name"
+    value={userName}
+    onChange={(e) => setUserName(e.target.value)}
+    className="w-full border border-gray-300 rounded-md p-2 bg-white text-black focus:outline-none focus:border-blue-500"
+  />
+
+  <input
+    type="text"
+    placeholder="Headline"
+    value={headline}
+    onChange={(e) => setHeadline(e.target.value)}
+    className="w-full border border-gray-300 rounded-md p-2 bg-white text-black focus:outline-none focus:border-blue-500"
+  />
+
+  <input
+    type="text"
+    placeholder="Location"
+    value={location}
+    onChange={(e) => setLocation(e.target.value)}
+    className="w-full border border-gray-300 rounded-md p-2 bg-white text-black focus:outline-none focus:border-blue-500"
+  />
+
+  <input
+    type="text"
+    placeholder="Gender (Male / Female / Other)"
+    value={gender}
+    onChange={(e) => setGender(e.target.value)}
+    className="w-full border border-gray-300 rounded-md p-2 bg-white text-black focus:outline-none focus:border-blue-500"
+  />
+
+</form>
+
       </div>
     </div>
   )
