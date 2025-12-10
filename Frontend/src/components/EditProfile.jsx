@@ -1,5 +1,7 @@
 import React, { useContext } from 'react'
 import { RxCross2 } from "react-icons/rx";
+import { FiPlus } from "react-icons/fi";
+import { IoCameraOutline } from "react-icons/io5";
 import { UserDataContext } from '../context/userContext';
 import profileDp from '../assets/profileBlanck.webp'
 function EditProfile() {
@@ -11,10 +13,15 @@ function EditProfile() {
         <div className="absolute top-[20px] right-[20px] "><RxCross2 onClick={() => setEdit(false)} className='w-[25px] h-[25px] text-gray-800 font-bold cursor-pointer' /></div>
         <div className="w-full h-[150px] bg-gray-500 rounded-lg mt-[40px] overflow-hidden">
           <img src="" alt="" className='w-full' />
+           <IoCameraOutline className='absolute right-[20px] top-[60px] w-[25px] h-[25px] text-white cursor-pointer'  />
         </div>
         <div className='w-[80px] h-[80px] m-3 rounded-full overflow-hidden border absolute top-[150px] ml-[20px]'>
           <img src={profileDp} alt='Profile' className='w-full h-full object-cover' />
+
         </div>
+         <div className="w-[20px] h-[20px]  bg-[#17c1ff] absolute top-[210px] left-[90px] rounded-full flex justify-center items-center">
+                    <FiPlus className='text-white' />
+                  </div>
       </div>
     </div>
   )

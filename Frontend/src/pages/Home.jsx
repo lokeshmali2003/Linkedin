@@ -17,7 +17,7 @@ function Home() {
       <div className='w-full lg:w-[25%] rounded-lg min-h-[200px] bg-white shadow-lg p-[10px] relative' >
         <div className='w-[100%] h-[100px] bg-gray-400 rounded overflow-hidden flex items-center justify-center' onClick={()=>setEdit(true)}  >
           <img src='' alt='' className='w-full' />
-           <IoCameraOutline className='absolute right-[20px] top-[20px] w-[25px] h-[25px] text-gray-800 cursor-pointer'  />
+           <IoCameraOutline className='absolute right-[20px] top-[20px] w-[25px] h-[25px] text-white cursor-pointer'  />
         </div>
         <div className='w-[70px] h-[70px] rounded-full overflow-hidden items-center justify-center absolute top-[65px] left-[35px] cursor-pointer' onClick={()=>setEdit(true)}  >
           <img src={dp} alt='' className='h-full' />
