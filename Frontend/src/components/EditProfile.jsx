@@ -77,6 +77,10 @@ function EditProfile() {
     onChange={(e) => setGender(e.target.value)}
     className="w-full border border-gray-300 rounded-md p-2 bg-white text-black focus:outline-none focus:border-blue-500"
   />
+  <div>
+  <h1>Skilla</h1>
+
+  </div>
 </form>
 
       </div>
